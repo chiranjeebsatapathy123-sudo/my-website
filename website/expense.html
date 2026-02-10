@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 30px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 120px;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        #history {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #history li {
+            background: #f8f8f8;
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 5px solid #2ecc71; /* green for income */
+            display: flex;
+            justify-content: space-between;
+        }
+        #history li.expense {
+            border-left: 5px solid #e74c3c; /* red for expense */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+        <h2>Balance: $<span id="balance">0</span></h2>
+
+        <input type="text" id="desc" placeholder="Description">
+        <input type="number" id="amount" placeholder="Amount">
+        <button onclick="addTransaction()">Add</button>
+
+        <ul id="history"></ul>
+    </div>
+
+    <script>
+        // Get stored transactions or empty array
+        let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+        function addTransaction() {
+            const desc = document.getElementById("desc").value;
+            const amount = parseFloat(document.getElementById("amount").value);
+
+            if (desc === "" || isNaN(amount)) {
+                alert("Please enter valid description and amount");
+                return;
+            }
+
+            const transaction = {
+                id: Date.now(),
+                desc,
+                amount
+            };
+
+            transactions.push(transaction);
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+
+            document.getElementById("desc").value = "";
+            document.getElementById("amount").value = "";
+
+            updateUI();
+        }
+
+        function deleteTransaction(id) {
+            transactions = transactions.filter(t => t.id !== id);
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+            updateUI();
+        }
+
+        function updateUI() {
+            const history = document.getElementById("history");
+            history.innerHTML = "";
+
+            let balance = 0;
+
+            transactions.forEach(t => {
+                const li = document.createElement("li");
+                li.className = t.amount < 0 ? "expense" : "income";
+                li.innerHTML = `
+                    ${t.desc} <span>$${t.amount}</span>
+                    <button onclick="deleteTransaction(${t.id})">X</button>
+                `;
+                history.appendChild(li);
+                balance += t.amount;
+            });
+
+            document.getElementById("balance").innerText = balance;
+        }
+
+        // Initialize UI
+        updateUI();
+    </script>
+</body>
+</html>
