@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chiru's Smart Store Search</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .search-box {
+            margin: 40px;
+        }
+
+        input {
+            width: 50%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        select {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #ff9800;
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+
+        .info {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #333;
+        }
+        .categories {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.categories img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.categories img:hover {
+    transform: scale(1.1);
+}
+
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    🛒 Chiru's Smart Multi-Store Search
+</header>
+
+<div class="search-box">
+    <input type="text" id="product" placeholder="Search any product...">
+
+    <select id="store">
+        <option value="all">All Stores</option>
+        <option value="amazon">Amazon</option>
+        <option value="flipkart">Flipkart</option>
+        <option value="jio">JioMart</option>
+        <option value="myntra">Myntra</option>
+    </select>
+
+    <button onclick="searchProduct()">Search</button>
+    <div class="categories">
+    <img src="https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg" alt="Mobiles">
+    
+    <img src="https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg" alt="Headphones">
+    
+    <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg" alt="Shoes">
+    
+    <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg" alt="Electronics">
+    
+    <img src="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg" alt="Clothes">
+</div>
+<a href="index.html">
+    <button>Back to Home</button>
+</a>
+
+<script>
+function searchProduct() {
+
+    let item = document.getElementById("product").value;
+    let store = document.getElementById("store").value;
+
+    if(item === "") {
+        alert("Please enter a product name");
+        return;
+    }
+
+    let amazonURL = "https://www.amazon.in/s?k=" + item;
+    let flipkartURL = "https://www.flipkart.com/search?q=" + item;
+    let jioURL = "https://www.jiomart.com/search/" + item;
+    let myntraURL = "https://www.myntra.com/search?q=" + item;
+
+    if(store === "all") {
+        window.open(amazonURL, "_blank");
+        window.open(flipkartURL, "_blank");
+        window.open(jioURL, "_blank");
+        window.open(myntraURL, "_blank");
+    }
+    else if(store === "amazon") {
+        window.open(amazonURL, "_blank");
+    }
+    else if(store === "flipkart") {
+        window.open(flipkartURL, "_blank");
+    }
+    else if(store === "jio") {
+        window.open(jioURL, "_blank");
+    }
+    else if(store === "myntra") {
+        window.open(myntraURL, "_blank")
+    }
+}
+
+</script>
+
+</body>
+</html>

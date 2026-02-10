@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chiru's Developer Hub</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 30px;
+            display: none;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Chiru's Developer Hub 🚀</h1>
+    <p>My Info | My Apps | My Projects</p>
+</header>
+
+<nav>
+    <button onclick="showSection('about')">About Me</button>
+    <button onclick="showSection('apps')">My Apps</button>
+    <button onclick="showSection('contact')">Contact</button>
+    <button onclick="showSection('resume')">My Resume</button>
+
+</nav>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <div class="card">
+        <h2>About Me 👤</h2>
+        <p>Name: Chiranjeeb Satapathy</p>
+        <p>Branch: B.Tech CSE</p>
+        <p>Skills: HTML, Java, DSA, Python</p>
+        <p>Learning: Web Development & Algorithms</p>
+    </div>
+</section>
+
+
+<!-- Resume Section-->
+<section id="resume">
+        <div class="card">
+            <h2>Resume</h2>
+            <p>A site containing my resume</p>
+            <button onclick="window.location.href='resume.html'">
+            Click here to view
+
+        </div>
+    </section>
+
+
+<!-- APPS SECTION -->
+<section id="apps">
+    <div class="card">
+        <h2>🛒 Shopping Hub</h2>
+        <p>A website combining Amazon, Flipkart, Myntra, Ajio.</p>
+        <button onclick="window.location.href='shopping.html'">
+    Open Shopping Page
+</button>
+
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="card">
+        <h2>Contact 📧</h2>
+        <p>Email: chiranjeebsatapathy123@gmail.com</p>
+        <p>LinkedIn: **************</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Chiru Developer Hub
+</footer>
+<script>
+
+function showSection(sectionId) {
+    document.getElementById("about").style.display = "none";
+    document.getElementById("apps").style.display = "none";
+    document.getElementById("contact").style.display = "none";
+    document.getElementById("resume").style.display = "none";
+
+    document.getElementById(sectionId).style.display = "block";
+}
+
+showSection("about");
+
+</script>
+
+</body>
+</html>
