@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Booking</title>
+</head>
+<a href="index.html">
+    <button>Back to Home</button>
+
+<body style="font-family: Arial; text-align:center; padding:40px;">
+
+    <h2>Room Booking Form</h2>
+
+    <form onsubmit="return bookRoom()">
+        <input type="text" placeholder="Your Name" required><br><br>
+        <input type="email" placeholder="Your Email" required><br><br>
+        <input type="tel" placeholder="Phone Number" required><br><br>
+
+        <select required>
+            <option value="">Select Room Type</option>
+            <option>Single Room</option>
+            <option>Double Sharing</option>
+            <option>Triple Sharing</option>
+        </select><br><br>
+
+        <button type="submit">Confirm Booking</button>
+    </form>
+
+    <h3 id="message" style="color:green;"></h3>
+
+    <script>
+        function bookRoom() {
+            document.getElementById("message").innerText = "🎉 Booked Successfully!";
+            return false; // stops page refresh
+        }
+    </script>
+
+</body>
+</html>
